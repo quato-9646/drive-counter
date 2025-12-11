@@ -9,8 +9,8 @@
   .input-block { margin-bottom: 20px; }
   input[type="number"] { font-size:22px; width:120px; padding:5px; }
   .big-button {
-    font-size:28px;
-    padding:20px 40px;
+    font-size:20px;
+    padding:14px 28px;
     margin:10px;
     border:none;
     border-radius:10px;
@@ -19,7 +19,7 @@
     cursor:pointer;
   }
   .big-button:hover { filter:brightness(0.95); }
-  #result { font-size:26px; margin-top:20px; }
+  #result { font-size:22px; margin-top:20px; }
   .rainbow {
     background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
     color: black;
@@ -29,6 +29,10 @@
     background:#ff4444;
     color: white;
     font-weight: bold;
+  }
+  .resetBtn {
+    background:#555 !important;
+    color: white !important;
   }
   label { font-size:18px; }
 </style>
@@ -47,13 +51,17 @@
 </div>
 
 <!-- 大きめのボタン2つ -->
-<button class="big-button rainbow" onclick="addRushDrive()">RUSH ＆ DRIVE 加算</button>
-<button class="big-button rushOnly" onclick="addRushOnly()">RUSH のみ加算</button>
+<div>
+  <button class="big-button rainbow" onclick="addRushDrive()">RUSH + DRIVE 加算</button>
+  <button class="big-button rushOnly" onclick="addRushOnly()">RUSH のみ加算</button>
+</div>
+
+<!-- リセットボタン（ボタン2つの下） -->
+<div>
+  <button class="big-button resetBtn" onclick="resetAll()">リセット</button>
+</div>
 
 <div id="result">DRIVE確率: 0%</div>
-
-<!-- リセットボタン追加 -->
-<button class="big-button" style="background:#555;" onclick="resetAll()">リセット</button>
 
 <script>
 function toInt(elId) {
@@ -86,15 +94,16 @@ function addRushOnly() {
   updateRate();
 }
 
-// 初期表示
-updateRate();
 function resetAll() {
-  if (confirm("リセットシマスカ？")) {
+  if (confirm("本当にリセットしますか？")) {
     document.getElementById("rush").value = 0;
     document.getElementById("drive").value = 0;
     updateRate();
   }
 }
+
+// 初期表示
+updateRate();
 </script>
 
 </body>
