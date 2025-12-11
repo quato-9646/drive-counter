@@ -47,7 +47,7 @@
 </div>
 
 <!-- 大きめのボタン2つ -->
-<button class="big-button rainbow" onclick="addRushDrive()">RUSH + DRIVE 加算</button>
+<button class="big-button rainbow" onclick="addRushDrive()">RUSH ＆ DRIVE 加算</button>
 <button class="big-button rushOnly" onclick="addRushOnly()">RUSH のみ加算</button>
 
 <div id="result">DRIVE確率: 0%</div>
@@ -89,7 +89,7 @@ function addRushOnly() {
 // 初期表示
 updateRate();
 function resetAll() {
-  if (confirm("本当にリセットしますか？")) {
+  if (confirm("リセットシマスカ？")) {
     document.getElementById("rush").value = 0;
     document.getElementById("drive").value = 0;
     updateRate();
