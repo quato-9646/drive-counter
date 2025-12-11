@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RUSH / DRIVE 確率計算アプリ</title>
+<style>
+  body { font-family: Arial, sans-serif; text-align:center; padding:20px; }
+  .input-block { margin-bottom: 20px; }
+  input[type="number"] { font-size:22px; width:120px; padding:5px; }
+  .big-button {
+    font-size:28px;
+    padding:20px 40px;
+    margin:10px;
+    border:none;
+    border-radius:10px;
+    background:#007bff;
+    color:white;
+    cursor:pointer;
+  }
+  .big-button:hover { filter:brightness(0.95); }
+  #result { font-size:26px; margin-top:20px; }
+  .rainbow {
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    color: black;
+    font-weight: bold;
+  }
+  .rushOnly {
+    background:#ff4444;
+    color: white;
+    font-weight: bold;
+  }
+  label { font-size:18px; }
+</style>
+</head>
+<body>
+<h1>RUSH / DRIVE 確率計算</h1>
+
+<div class="input-block">
+  <label for="rush">RUSH 回数: </label>
+  <input type="number" id="rush" value="0" min="0" onchange="updateRate()" aria-label="rush count">
+</div>
+
+<div class="input-block">
+  <label for="drive">DRIVE 回数: </label>
+  <input type="number" id="drive" value="0" min="0" onchange="updateRate()" aria-label="drive count">
+</div>
+
+<!-- 大きめのボタン2つ -->
+<button class="big-button rainbow" onclick="addRushDrive()">RUSH + DRIVE 加算</button>
+<button class="big-button rushOnly" onclick="addRushOnly()">RUSH のみ加算</button>
+
+<div id="result">DRIVE確率: 0%</div>
+
+<script>
+function toInt(elId) {
+  const v = document.getElementById(elId).value;
+  const n = parseInt(v, 10);
+  return Number.isNaN(n) ? 0 : n;
+}
+
+function updateRate() {
+  const rush = toInt("rush");
+  const drive = toInt("drive");
+  let rate = 0;
+  if (rush > 0) rate = (drive / rush) * 100;
+  document.getElementById("result").textContent = `DRIVE確率: ${rate.toFixed(2)}%`;
+}
+
+// RUSH と DRIVE を両方 +1
+function addRushDrive() {
+  const rushEl = document.getElementById("rush");
+  const driveEl = document.getElementById("drive");
+  rushEl.value = toInt("rush") + 1;
+  driveEl.value = toInt("drive") + 1;
+  updateRate();
+}
+
+// RUSH のみ +1
+function addRushOnly() {
+  const rushEl = document.getElementById("rush");
+  rushEl.value = toInt("rush") + 1;
+  updateRate();
+}
+
+// 初期表示
+updateRate();
+</script>
+
+</body>
+</html>
