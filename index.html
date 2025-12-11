@@ -52,6 +52,9 @@
 
 <div id="result">DRIVE確率: 0%</div>
 
+<!-- リセットボタン追加 -->
+<button class="big-button" style="background:#555;" onclick="resetAll()">リセット</button>
+
 <script>
 function toInt(elId) {
   const v = document.getElementById(elId).value;
@@ -85,6 +88,13 @@ function addRushOnly() {
 
 // 初期表示
 updateRate();
+function resetAll() {
+  if (confirm("本当にリセットしますか？")) {
+    document.getElementById("rush").value = 0;
+    document.getElementById("drive").value = 0;
+    updateRate();
+  }
+}
 </script>
 
 </body>
